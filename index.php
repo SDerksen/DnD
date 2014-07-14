@@ -5,7 +5,7 @@ echo("<h1>dnd ding</h1>");
 
 $players_result = mysqli_query($dblink, "SELECT player_id, name, level FROM players");
 
-echo "<table border=1>
+echo "<b>Character Sheets</b><table border=1>
 	<tr>
 		<th>ID</th>
 		<th>Naam</th>
@@ -21,4 +21,8 @@ while($players = $players_result->fetch_assoc()) {
 	</tr>
 	";
 	}
+	echo "</table>";
+    echo "<a href='createchar.php'><input type='button' value='New character'></a>";
+
+	echo "<br><br><a href='dmtools.php'> Tools voor de DM</a>";
 ?>

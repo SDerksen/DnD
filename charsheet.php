@@ -9,6 +9,7 @@ echo "<h1> Charsheet ".$player_overview['name']."</h1><hr>";
 
 
 if($_GET['action'] == 'edit') {
+	
     if (isset($_POST['name']) && isset($_POST['level']) && isset($_POST['str']) &&
         isset($_POST['dex']) && isset($_POST['con']) && isset($_POST['wis']) &&
         isset($_POST['intel']) && isset($_POST['cha']) && isset($_POST['class']) &&
@@ -92,7 +93,6 @@ if($_GET['action'] == 'edit') {
 } elseif ($_GET['action'] == 'view') {
     echo "<table border='1'>";
 	echo "
-	
 	<th>Naam</th>
 	<td>".$player_overview['name']."</td><tr>
 	<th>ECL</th>
