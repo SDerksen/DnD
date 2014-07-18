@@ -1,25 +1,23 @@
 <?php
 include('dbconnect.php');
 if (!empty($_POST)) {
-    echo "<pre>";
-    var_dump($_POST);
-    echo "</pre>";
     $query = "INSERT INTO players
-         ('name', 'level', 'str', 'dex', 'con', 'wis',
-                'intel', 'cha', 'class', 'hp', 'ac', 'movement',
-               'initiative', 'batt', 'fort', 'ref', 'will')
+         (name, level, str, dex, con, wis,
+                intel, cha, class, hp, ac, movement,
+               initiative, batt, fort, ref, will)
          VALUES (
-         ".$_POST['name'].", ".$_POST['level'].", ".$_POST['str']."
-         ".$_POST['dex'].", ".$_POST['con'].", ".$_POST['wis']."
-         ".$_POST['intel'].", ".$_POST['cha'].", ".$_POST['class']."
-         ".$_POST['hp'].", ".$_POST['ac'].", ".$_POST['movement']."
-         ".$_POST['initiative'].", ".$_POST['batt'].", ".$_POST['fort']."
+         '".$_POST['name']."', ".$_POST['level'].", ".$_POST['str'].",
+         ".$_POST['dex'].", ".$_POST['con'].", ".$_POST['wis']." ,
+         ".$_POST['intel'].", ".$_POST['cha'].", '".$_POST['class']."',
+         ".$_POST['hp'].", ".$_POST['ac'].", ".$_POST['movement'].",
+         ".$_POST['initiative'].", ".$_POST['batt'].", ".$_POST['fort'].",
          ".$_POST['ref'].", ".$_POST['will'].")";
     if (mysqli_query($dblink, $query)) {
         echo "Gegevens opslaan gelukt";
     } else {
-        echo "Fout: ";
+        echo "Fout: <br>";
         mysqli_error($dblink);
+        echo "<br>";
         var_dump($query);
     }
 }
