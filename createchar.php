@@ -1,7 +1,31 @@
 <?php
-
+include('dbconnect.php');
+if (!empty($_POST)) {
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
+    $query = "INSERT INTO players
+         ('name', 'level', 'str', 'dex', 'con', 'wis',
+                'intel', 'cha', 'class', 'hp', 'ac', 'movement',
+               'initiative', 'batt', 'fort', 'ref', 'will')
+         VALUES (
+         ".$_POST['name'].", ".$_POST['level'].", ".$_POST['str']."
+         ".$_POST['dex'].", ".$_POST['con'].", ".$_POST['wis']."
+         ".$_POST['intel'].", ".$_POST['cha'].", ".$_POST['class']."
+         ".$_POST['hp'].", ".$_POST['ac'].", ".$_POST['movement']."
+         ".$_POST['initiative'].", ".$_POST['batt'].", ".$_POST['fort']."
+         ".$_POST['ref'].", ".$_POST['will'].")";
+    if (mysqli_query($dblink, $query)) {
+        echo "Gegevens opslaan gelukt";
+    } else {
+        echo "Fout: ";
+        mysqli_error($dblink);
+        var_dump($query);
+    }
+}
     echo "
     <h1> New character </h1> <hr><br>
+    <form action='' method='post'>
     <table border=1>
     <th>Naam</th>
     <td><input type='text' name='name' value=''></td><tr>
@@ -53,7 +77,7 @@
     <th>Will Save</th>
     <td><input type='number' name='will' value=''></td>
     </tr>
-        <td><input type='submit' value='Toepassen'><a href='charsheet.php?id=&action=view'><input type='button' value='Annuleren'></a></td>
+        <td><input type='submit' value='Toepassen'><a href='index.php'><input type='button' value='Annuleren'></a></td>
     </table>
     </form>";
 

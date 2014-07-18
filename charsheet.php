@@ -1,5 +1,6 @@
 <?php
 include('dbconnect.php');
+if (!empty($_GET['id'])) {
 $player_id = $_GET['id'];
 
 
@@ -15,17 +16,22 @@ if($_GET['action'] == 'edit') {
         isset($_POST['intel']) && isset($_POST['cha']) && isset($_POST['class']) &&
         isset($_POST['hp']) && isset($_POST['ac']) && isset($_POST['movement']) && 
         isset($_POST['initiative']) && isset($_POST['batt']) && isset($_POST['fort']) && 
-        isset($_POST['ref']) && isset($_POST['will']) && !empty($_POST['name']) && !empty($_POST['level']) && !empty($_POST['str']) &&
+        isset($_POST['ref']) && isset($_POST['will']) && 
+        !empty($_POST['name']) && !empty($_POST['level']) && !empty($_POST['str']) &&
         !empty($_POST['dex']) && !empty($_POST['con']) && !empty($_POST['wis']) &&
         !empty($_POST['intel']) && !empty($_POST['cha']) && !empty($_POST['class']) &&
         !empty($_POST['hp']) && !empty($_POST['ac']) && !empty($_POST['movement']) && 
         !empty($_POST['initiative']) && !empty($_POST['batt']) && !empty($_POST['fort']) && 
         !empty($_POST['ref']) && !empty($_POST['will'])) {
 			if (mysqli_query($dblink, "UPDATE players SET 
-			name = '".$_POST['name']."', level = ".$_POST['level' ].", str = ".$_POST['str'].", dex = ".$_POST['dex'].",
-			con = ".$_POST['con'].", wis = ".$_POST['wis'].", intel = ".$_POST['intel'].", cha = ".$_POST['cha'].", class = '".$_POST['class']."', 
-			hp = ".$_POST['hp'].", ac = ".$_POST['ac'].", movement = ".$_POST['movement'].", initiative = ".$_POST['initiative'].",
-			batt = ".$_POST['batt'].", fort = ".$_POST['fort'].", ref = ".$_POST['ref'].", will = ".$_POST['will']." 
+			name = '".$_POST['name']."', level = ".$_POST['level' ].", 
+            str = ".$_POST['str'].", dex = ".$_POST['dex'].",
+			con = ".$_POST['con'].", wis = ".$_POST['wis'].", 
+            intel = ".$_POST['intel'].", cha = ".$_POST['cha'].", class = '".$_POST['class']."', 
+			hp = ".$_POST['hp'].", ac = ".$_POST['ac'].", 
+            movement = ".$_POST['movement'].", initiative = ".$_POST['initiative'].",
+			batt = ".$_POST['batt'].", fort = ".$_POST['fort'].", 
+            ref = ".$_POST['ref'].", will = ".$_POST['will']." 
 			WHERE player_id = ".$player_id."")) {
 				echo "Data is opgeslagen.";
 			} else {
@@ -87,7 +93,9 @@ if($_GET['action'] == 'edit') {
 	<th>Will Save</th>
 	<td><input type='number' name='will' value=".$player_overview['will']."></td>
 	</tr>
-		<td><input type='submit' value='Toepassen'><a href='charsheet.php?id=".$player_id."&action=view'><input type='button' value='Annuleren'></a></td>
+	<td><input type='submit' value='Toepassen'>
+    <a href='charsheet.php?id=".$player_id."&action=view'>
+    <input type='button' value='Annuleren'></a></td>
 	</table>
 	</form>";
 } elseif ($_GET['action'] == 'view') {
@@ -150,3 +158,8 @@ echo "<a href='charsheet.php?id=".$player_id."&action=edit'><input type=button v
 
 }
 echo "<a href='index.php'> Ga terug naar overzicht</a>";
+} else {
+    echo "Er is geen ID mee gegeven.<br>";
+    echo "<a href='index.php'><input type='button' value='Ga terug'></a></td>";
+
+}
