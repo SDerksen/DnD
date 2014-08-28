@@ -6,7 +6,7 @@ $player_id = $_GET['id'];
 
 $overview_result = mysqli_query($dblink, "SELECT * FROM players WHERE player_id = ".$player_id."");
 $player_overview = $overview_result->fetch_assoc();
-echo "<h1> Charsheet ".$player_overview['name']."</h1><hr>";
+echo "<h1> Charsheet ".$player_overview['player_name']."</h1><hr>";
 
 
 if($_GET['action'] == 'edit') {
@@ -102,9 +102,9 @@ if($_GET['action'] == 'edit') {
     echo "<table border='1'>";
 	echo "
 	<th>Naam</th>
-	<td>".$player_overview['name']."</td><tr>
+	<td>".$player_overview['player_name']."</td><tr>
 	<th>ECL</th>
-	<td>".$player_overview['level']."</td>
+	<td>".$player_overview['ecl']."</td>
 	</tr><tr>
 	<th>Strength</th>
 	<td>".$player_overview['str']."</td>
@@ -125,22 +125,19 @@ if($_GET['action'] == 'edit') {
 	<td>".$player_overview['cha']."</td>
 	</tr><tr>
 	<th>Class</th>
-	<td>".$player_overview['class']."</td>
+	<td>".$player_overview['class-levels']."</td>
 	</tr><tr>
 	<th>HP</th>
 	<td>".$player_overview['hp']."</td>
-	</tr><tr>
-	<th>AC</th>
-	<td>".$player_overview['ac']."</td>
 	</tr><tr>
 	<th>Movement Speed</th>
 	<td>".$player_overview['movement']."</td>
 	</tr><tr>
 	<th>Initiative</th>
-	<td>".$player_overview['initiative']."</td>
+	<td>".$player_overview['init']."</td>
 	</tr><tr>
 	<th>Base Attack Bonus</th>
-	<td>".$player_overview['batt']."</td>
+	<td>".$player_overview['bab']."</td>
 	</tr><tr>
 	<th>Fortitude Save</th>
 	<td>".$player_overview['fort']."</td>

@@ -7,7 +7,7 @@ $players_overview = mysqli_query($dblink, "SELECT * FROM players");
 echo "<form method='post' action=''><table border=1>";
 echo "<tr><th>Playername</th><th>Initiative</th>";
 while ($players = $players_overview->fetch_assoc()) {
-    echo "<tr><th>".$players['name']."</th><td><input type='number' name='".$players['name']."'></td></tr>";
+    echo "<tr><th>".$players['player_name']."</th><td><input type='number' name='".$players['name']."'></td></tr>";
 }
 
 echo "</table><input type='submit' value='Opslaan'></form><br><br>";
