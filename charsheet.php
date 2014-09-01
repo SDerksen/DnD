@@ -1,4 +1,6 @@
-<?php
+<html>
+<head>
+  <?php
 include('dbconnect.php');
 if (!empty($_GET['id'])) {
 $player_id = $_GET['id'];
@@ -30,11 +32,10 @@ if($_GET['action'] == 'edit') {
             		    intel = ".$_POST['intel'].", cha = ".$_POST['cha'].", `class-levels` = '".$_POST['class-levels']."', 
 			    hp = ".$_POST['hp']." ,  movement = ".$_POST['movement'].", init = ".$_POST['init'].",
 			    bab = ".$_POST['bab'].", fort = ".$_POST['fort'].", 
-			    race = ".$_POST['race'].", alignment = ".$_POST['alignment'].",
+			    race = ".$_POST['race'].", alignment = '".$_POST['alignment']."',
             		    ref = ".$_POST['ref'].", will = ".$_POST['will']." 
 			    WHERE player_id = ".$player_id."")) {
-			        echo "Data is opgeslagen.";
-				
+				header("location: charsheet.php?id=".$player_id."&action=view");
 			} else {
 			    echo "<br>Error in opslaan<br>";
 			    print(mysqli_error($dblink));
@@ -158,6 +159,9 @@ if($_GET['action'] == 'edit') {
 	</tr><tr>
 	<th>Race</th>
 	<td>".$player_overview['race']."</td>
+        </tr><tr>
+	<th>Alingment</th>
+	<td>".$player_overview['alignment']."</td>
         </tr><tr>
     ";
 
