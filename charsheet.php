@@ -10,44 +10,47 @@ echo "<h1> Charsheet ".$player_overview['player_name']."</h1><hr>";
 
 
 if($_GET['action'] == 'edit') {
-	
-    if (isset($_POST['player_name']) && isset($_POST['level']) && isset($_POST['str']) &&
+    if (isset($_POST['player_name']) && isset($_POST['ecl']) && isset($_POST['str']) &&
         isset($_POST['dex']) && isset($_POST['con']) && isset($_POST['wis']) &&
-        isset($_POST['intel']) && isset($_POST['cha']) && isset($_POST['class']) &&
-        isset($_POST['hp']) && isset($_POST['ac']) && isset($_POST['movement']) && 
-        isset($_POST['initiative']) && isset($_POST['batt']) && isset($_POST['fort']) && 
+        isset($_POST['intel']) && isset($_POST['cha']) && isset($_POST['class-levels']) &&
+        isset($_POST['hp']) && isset($_POST['race']) && isset($_POST['movement']) && 
+        isset($_POST['init']) && isset($_POST['bab']) && isset($_POST['fort']) && 
         isset($_POST['ref']) && isset($_POST['will']) && 
 
-        !empty($_POST['player_name']) && !empty($_POST['level']) && !empty($_POST['str']) &&
+        !empty($_POST['player_name']) && !empty($_POST['ecl']) && !empty($_POST['str']) &&
         !empty($_POST['dex']) && !empty($_POST['con']) && !empty($_POST['wis']) &&
-        !empty($_POST['intel']) && !empty($_POST['cha']) && !empty($_POST['class']) &&
-        !empty($_POST['hp']) && !empty($_POST['ac']) && !empty($_POST['movement']) && 
-        !empty($_POST['initiative']) && !empty($_POST['batt']) && !empty($_POST['fort']) && 
+        !empty($_POST['intel']) && !empty($_POST['cha']) && !empty($_POST['class-levels']) &&
+        !empty($_POST['hp']) && !empty($_POST['race']) && !empty($_POST['movement']) && 
+        !empty($_POST['init']) && !empty($_POST['bab']) && !empty($_POST['fort']) && 
         !empty($_POST['ref']) && !empty($_POST['will'])) {
 			if (mysqli_query($dblink, "UPDATE players SET 
-			    player_name = '".$_POST['player_name']."', ecl = ".$_POST['level' ].", 
+			    player_name = '".$_POST['player_name']."', ecl = ".$_POST['ecl' ].", 
             		    str = ".$_POST['str'].", dex = ".$_POST['dex'].",
 			    con = ".$_POST['con'].", wis = ".$_POST['wis'].", 
-            		    intel = ".$_POST['intel'].", cha = ".$_POST['cha'].", `class-levels` = '".$_POST['class']."', 
-			    hp = ".$_POST['hp'].", alignment = ".$_POST['alignment'].", 
-            		    movement = ".$_POST['movement'].", init = ".$_POST['initiative'].",
-			    bab = ".$_POST['batt'].", fort = ".$_POST['fort'].", 
+            		    intel = ".$_POST['intel'].", cha = ".$_POST['cha'].", `class-levels` = '".$_POST['class-levels']."', 
+			    hp = ".$_POST['hp']." ,  movement = ".$_POST['movement'].", init = ".$_POST['init'].",
+			    bab = ".$_POST['bab'].", fort = ".$_POST['fort'].", 
+			    race = ".$_POST['race'].", alignment = ".$_POST['alignment'].",
             		    ref = ".$_POST['ref'].", will = ".$_POST['will']." 
 			    WHERE player_id = ".$player_id."")) {
 			        echo "Data is opgeslagen.";
+				
 			} else {
-			    echo "<br>Error in opslaan";
+			    echo "<br>Error in opslaan<br>";
 			    print(mysqli_error($dblink));
 			}
     } else {
             echo "Niet alle velden zijn ingevuld.";
+            echo "<pre>";
+	    var_dump($_POST);
+	    echo "</pre>";
     }
     echo "<form action='' method='post' ><table border=1>";
 	echo "
     <th>Naam</th>
 	<td><input type='text' name='player_name' value=".$player_overview['player_name']."></td><tr>
 	<th>ECL</th>
-	<td><input type='text' name='level' value=".$player_overview['ecl']."></td>
+	<td><input type='text' name='ecl' value=".$player_overview['ecl']."></td>
 	</tr><tr>
 	<th>Strength</th>
 	<td><input type='number' name='str' value=".$player_overview['str']."></td>
@@ -68,7 +71,7 @@ if($_GET['action'] == 'edit') {
 	<td><input type='number' name='cha' value=".$player_overview['cha']."></td>
 	</tr><tr>
 	<th>Class</th>
-	<td><input type='text' name='class' value=".$player_overview['class-levels']."></td>
+	<td><input type='text' name='class-levels' value=".$player_overview['class-levels']."></td>
 	</tr><tr>
 	<th>HP</th>
 	<td><input type='number' name='hp' value=".$player_overview['hp']."></td>
@@ -77,10 +80,10 @@ if($_GET['action'] == 'edit') {
 	<td><input type='number' name='movement' value=".$player_overview['movement']."></td>
 	</tr><tr>
 	<th>Initiative</th>
-	<td><input type='number' name='initiative' value=".$player_overview['init']."></td>
+	<td><input type='number' name='init' value=".$player_overview['init']."></td>
 	</tr><tr>
 	<th>Base Attack Bonus</th>
-	<td><input type='number' name='batt' value=".$player_overview['bab']."></td>
+	<td><input type='number' name='bab' value=".$player_overview['bab']."></td>
 	</tr><tr>
 	<th>Fortitude Save</th>
 	<td><input type='number' name='fort' value=".$player_overview['fort']."></td>
@@ -93,6 +96,9 @@ if($_GET['action'] == 'edit') {
 	</tr><tr>
 	<th>Race</th>
 	<td><input type='text' name='race' value=".$player_overview['race']."></td>
+        </tr><tr>
+	<th>Alignment</th>
+	<td><input type='text' name='alignment' value=".$player_overview['alignment']."></td>
         </tr><tr>
 	<td><input type='submit' value='Toepassen'>
     <a href='charsheet.php?id=".$player_id."&action=view'>
