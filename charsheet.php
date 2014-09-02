@@ -42,9 +42,6 @@ if($_GET['action'] == 'edit') {
 			}
     } else {
             echo "Niet alle velden zijn ingevuld.";
-            echo "<pre>";
-	    var_dump($_POST);
-	    echo "</pre>";
     }
     echo "<form action='' method='post' ><table border=1>";
 	echo "
