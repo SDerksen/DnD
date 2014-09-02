@@ -6,19 +6,19 @@ if (!empty($_POST)) {
                 intel, cha, `class-levels`, hp, movement,
                init, bab, fort, ref, will, race, alignment)
          VALUES (
-         '".$_POST['player_name']."', ".$_POST['ecl'].", ".$_POST['str'].",
-         ".$_POST['dex'].", ".$_POST['con'].", ".$_POST['wis']." ,
-         ".$_POST['intel'].", ".$_POST['cha'].", '".$_POST['class']."',
-         ".$_POST['hp'].", ".$_POST['movement'].",
-         ".$_POST['initiative'].", ".$_POST['batt'].", ".$_POST['fort'].",
-         ".$_POST['ref'].", ".$_POST['will'].", ".$_POST['race'].", ".$_POST['alignment'].")";
+         '".$_POST['player_name']."', '".$_POST['ecl']."', '".$_POST['str']."',
+         '".$_POST['dex']."', '".$_POST['con']."', '".$_POST['wis']."' ,
+         '".$_POST['intel']."', '".$_POST['cha']."', '".$_POST['class']."',
+         '".$_POST['hp']."', '".$_POST['movement']."',
+         '".$_POST['initiative']."', '".$_POST['batt']."', '".$_POST['fort']."',
+         '".$_POST['ref']."', '".$_POST['will']."', '".$_POST['race']."', '".$_POST['alignment']."')";
     if (mysqli_query($dblink, $query)) {
         echo "Gegevens opslaan gelukt";
     } else {
         echo "Fout: <br>";
         mysqli_error($dblink);
         echo "<br>";
-        var_dump($query);
+        #var_dump($query);
     }
 }
     echo "
@@ -53,9 +53,6 @@ if (!empty($_POST)) {
     </tr><tr>
     <th>HP</th>
     <td><input type='number' name='hp' value=''></td>
-    </tr><tr>
-    <th>AC</th>
-    <td><input type='number' name='ac' value=''></td>
     </tr><tr>
     <th>Movement Speed</th>
     <td><input type='number' name='movement' value=''></td>
