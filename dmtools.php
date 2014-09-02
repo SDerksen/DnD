@@ -15,12 +15,21 @@ echo "</table><input type='submit' value='Opslaan'></form><br>";
 if (isset($_POST)) {
     #arsort($_POST);
     foreach($_POST as $player => $initiative) {
-	echo $player;
-	$player_init_result = mysqli_query($dblink, "SELECT init FROM players WHERE player_name = ".$player."");
-	foreach ( $player_init = $player_init_result->fetch_assoc() ) {
-        echo $player_init;
-}	
-        echo "$player = $initiative <br>";
+        echo "Player name = $player <br>";
+	if( $player_init_result = mysqli_query($dblink, "SELECT init FROM players WHERE player_name = '".$player."'") ) {
+	    while($players_init = $player_init_result->fetch_assoc()) {
+	        echo "Player initiatives = $players_init  <br>";
+		var_dump($players_init);
+            }
+	} else {
+	    echo "Er gaat iets fout <br>";
+	    printf(mysqli_error($dblink));
+	    echo "<br>";
+        }
+	#foreach($player_init = $player_init_result->fetch_assoc()) {
+        #    echo $player_init;
+#}	
+        #echo "Final order : $player = $initiative <br>";
     }
 }
 
