@@ -21,10 +21,8 @@ if (isset($_POST)) {
     foreach($_POST as $player => $initiative) {
 	if( $player_init_result = mysqli_query($dblink, "SELECT init FROM players WHERE player_name = '".$player."'") ) {
 	    while($players_init = $player_init_result->fetch_assoc()) {
-		$player_init = $players_init['init'];
-		$final_init = $initiative + $player_init;
+		$final_init = $initiative + $players_init['init'];
 		$init_array[$player] = $final_init;
-		
             }
 	} else {
 	    echo "Er gaat iets fout <br>";
@@ -33,10 +31,12 @@ if (isset($_POST)) {
         }
     }
 }
+
 arsort($init_array);
 
 foreach( $init_array as $player => $initiative ) {
-    echo "$player - $initiative <br>";
+    print("$player - $initiative <br>");
 }
+
 echo "<a href='index.php'> Ga terug naar overzicht</a>";
 ?>
