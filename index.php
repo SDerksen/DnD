@@ -1,5 +1,6 @@
 <?php
 include('dbconnect.php');
+include('includes/functions.php');
 
 echo("<h1>dnd ding</h1>");
 
