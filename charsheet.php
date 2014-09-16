@@ -1,7 +1,7 @@
 <html>
 <head>
   <?php
-include('dbconnect.php');
+include('includes/dbconnect.php');
 if (!empty($_GET['id'])) {
 $player_id = $_GET['id'];
 

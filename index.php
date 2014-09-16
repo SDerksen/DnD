@@ -1,5 +1,5 @@
 <?php
-include('dbconnect.php');
+include('includes/dbconnect.php');
 include('includes/functions.php');
 
 echo("<h1>dnd ding</h1>");
@@ -26,3 +26,5 @@ while ($players = $players_result->fetch_assoc()) {
 
 	echo "<br><br><a href='dmtools.php'> Tools voor de DM</a>";
 ?>
+
+

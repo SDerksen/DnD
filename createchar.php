@@ -1,5 +1,5 @@
 <?php
-include('dbconnect.php');
+include('includes/dbconnect.php');
 if (!empty($_POST)) {
     $query = "INSERT INTO players
          (player_name, ecl, str, dex, con, wis,
