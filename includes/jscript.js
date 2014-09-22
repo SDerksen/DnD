@@ -9,16 +9,25 @@ function newrow() {
     cell2.innerHTML = "<input type='number' name='baddies'>";
 }
 
-function initup(text) {
-    var = 1;
-    var row = document.getElementById('player-init');
-    var rowcontents = row.innerHTML;
+function delayPlayer(text) {
+    var name = text;
+    var cellcontent = document.getElementById(text);
 
+    var existing = cellcontent.innerHTML; 
+    var empty = ''; 
      
-    var text = 'hallo'
-    //var text = document.getElementById('player-init-1').innerHTML 
-    var empty = ''
-     
-    document.getElementById('new-init').innerHTML = text ;
-     
+    document.getElementById('new-init').innerHTML += existing + "<br>";
+    cellcontent.innerHTML = empty; 
+}
+
+function insertPlayer(text) {
+    var cellcontent = document.getElementById(text);
+    var existing = cellcontent.innerHTML; 
+    var table = document.getElementById("order");
+    var trow = table.insertRow()
+    var cell1 = trow.insertCell(0);
+    cell1.innerHTML = "existing";
+    
+    //document.getElementById('').innerHTML += existing + "<br>";
+    //cellcontent.innerHTML = empty; 
 }

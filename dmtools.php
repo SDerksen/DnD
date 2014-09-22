@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <script src="includes/jscript.js"></script>
@@ -12,48 +13,54 @@ include('includes/dbconnect.php');
 
 $players_overview = mysqli_query($dblink, "SELECT player_name, init FROM players");
 
-echo "<form method='post' action=''><table border=1 id='initiatives'>";
-echo "<tr><th>Playername</th><th>Initiative</th></tr>";
+echo "<form method='post' action=''><table border=1 id='initiatives'>\n";
+echo "<tr><th>Playername</th><th>Initiative</th></tr>\n";
 while ($players = $players_overview->fetch_assoc()) {
-    echo "<tr>
-            <td>".$players['player_name']."</td>
-	    <td><input type='number' name='".$players['player_name']."'>
-	    </td>
-          </tr>";
+echo "<tr>\n";
+echo "  <td>".$players['player_name']."</td>";
+echo "<td><input type='number' name='".$players['player_name']."'>";
+echo " <td>\n</tr>\n";
 }
 
-echo "</table><input type='submit' value='Opslaan'><input type='button' value='New Row' onclick='newrow()'>
-     </form><br>";
+echo "</table>\n<input type='submit' value='Opslaan'><input type='button' value='New Row' onclick='newrow()'>\n</form>";
 
 if (isset($_POST)) {
-    $init_array = array();
-    foreach($_POST as $player => $initiative) {
-	if ($player == "baddies" ) {
-		$init_array[$player] = $initiative;
-	}
-	if( $player_init_result = mysqli_query($dblink, "SELECT init FROM players WHERE player_name = '".$player."'") ) {
-	    while($players_init = $player_init_result->fetch_assoc()) {
-		$final_init = $initiative + $players_init['init'];
-		$init_array[$player] = $final_init;
-            }
-	} else {
-	    echo "Er gaat iets fout <br>";
-	    printf(mysqli_error($dblink));
-	    echo "<br>";
-        }
+$init_array = array();
+foreach($_POST as $player => $initiative) {
+if ($player == "baddies" ) {
+	$init_array[$player] = $initiative;
+}
+if( $player_init_result = mysqli_query($dblink, "SELECT init FROM players WHERE player_name = '".$player."'") ) {
+    while($players_init = $player_init_result->fetch_assoc()) {
+	$final_init = $initiative + $players_init['init'];
+	$init_array[$player] = $final_init;
     }
+} else {
+    echo "Er gaat iets fout <br>";
+    printf(mysqli_error($dblink));
+    echo "<br>";
+}
+}
 }
 
 arsort($init_array);
 $counter = 1;
-echo "<table border=0>";
+echo "\n<h2>Active initiative</h2>";
+echo "\n<table id='order' border=0>";
 foreach( $init_array as $player => $initiative ) {
-    echo "<tr>";
-    echo "<td id=player-init>".$player." - ".$initiative." <td><button onclick='initup()'>&#8593</button></td> <td><button onlick='initdown()'>&#8595;</button></td>";
-    echo "</tr>";
-    $counter++;
+echo "\n<tr id=player-init".$player.">";
+echo "\n  <td> $player - $initiative </td>\n  <td><button onclick='delayPlayer(\"player-init".$player."\")'>delayed</button></td> ";
+echo "\n  <td><button onclick='insertPlayer(\"delayed-init".$player."\")'>insert</button></td> \n";
+echo "</tr>";
+$counter++;
 }
-echo "</table>";
-echo "<p id='new-init'></p>";
-echo "<a href='index.php'> Ga terug naar overzicht</a>";
+echo "\n</table> ";
 ?>
+
+<p id='delay'><h2>Delayed persons</h2>
+<p id='new-init'></p>
+</p>
+
+<a href='index.php'> Ga terug naar overzicht</a>
+</body>
+</html>
