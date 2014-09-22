@@ -13,7 +13,7 @@ include('includes/dbconnect.php');
 $players_overview = mysqli_query($dblink, "SELECT player_name, init FROM players");
 
 echo "<form method='post' action=''><table border=1 id='initiatives'>";
-echo "<tr><th>Playername</th><th>Initiative</th>";
+echo "<tr><th>Playername</th><th>Initiative</th></tr>";
 while ($players = $players_overview->fetch_assoc()) {
     echo "<tr>
             <td>".$players['player_name']."</td>
@@ -45,10 +45,15 @@ if (isset($_POST)) {
 }
 
 arsort($init_array);
-
+$counter = 1;
+echo "<table border=0>";
 foreach( $init_array as $player => $initiative ) {
-    print("$player - $initiative <br>");
+    echo "<tr>";
+    echo "<td id=player-init>".$player." - ".$initiative." <td><button onclick='initup()'>&#8593</button></td> <td><button onlick='initdown()'>&#8595;</button></td>";
+    echo "</tr>";
+    $counter++;
 }
-
+echo "</table>";
+echo "<p id='new-init'></p>";
 echo "<a href='index.php'> Ga terug naar overzicht</a>";
 ?>

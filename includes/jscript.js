@@ -8,3 +8,17 @@ function newrow() {
     cell1.innerHTML = "Bad guys";
     cell2.innerHTML = "<input type='number' name='baddies'>";
 }
+
+function initup(text) {
+    var = 1;
+    var row = document.getElementById('player-init');
+    var rowcontents = row.innerHTML;
+
+     
+    var text = 'hallo'
+    //var text = document.getElementById('player-init-1').innerHTML 
+    var empty = ''
+     
+    document.getElementById('new-init').innerHTML = text ;
+     
+}
