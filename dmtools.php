@@ -50,16 +50,19 @@ echo "\n<table id='order' border=0>";
 foreach( $init_array as $player => $initiative ) {
 echo "\n<tr id=player-init".$player.">";
 echo "\n  <td> $player - $initiative </td>\n  <td><button onclick='delayPlayer(\"player-init".$player."\")'>delayed</button></td> ";
-echo "\n  <td><button onclick='insertPlayer(\"delayed-init".$player."\")'>insert</button></td> \n";
+echo "\n  <td><button onclick='insertPlayer(\"player-init".$player."\")'>insert</button></td> \n";
 echo "</tr>";
+echo "<tr id='emptyspace'>\n </tr>";
 $counter++;
 }
 echo "\n</table> ";
 ?>
 
-<p id='delay'><h2>Delayed persons</h2>
-<p id='new-init'></p>
-</p>
+<h2>Delayed persons</h2>
+<table id='new-init'>
+</table>
+
+<p id='test'></p>
 
 <a href='index.php'> Ga terug naar overzicht</a>
 </body>

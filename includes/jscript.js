@@ -16,17 +16,15 @@ function delayPlayer(text) {
     var existing = cellcontent.innerHTML; 
     var empty = ''; 
      
-    document.getElementById('new-init').innerHTML += existing + "<br>";
+    document.getElementById('new-init').innerHTML += existing;
     cellcontent.innerHTML = empty; 
 }
 
 function insertPlayer(text) {
     var cellcontent = document.getElementById(text);
     var existing = cellcontent.innerHTML; 
-    var table = document.getElementById("order");
-    var trow = table.insertRow()
-    var cell1 = trow.insertCell(0);
-    cell1.innerHTML = "existing";
+    var table = document.getElementById("emptyspace");
+    table.innerHTML = existing;
     
     //document.getElementById('').innerHTML += existing + "<br>";
     //cellcontent.innerHTML = empty; 
