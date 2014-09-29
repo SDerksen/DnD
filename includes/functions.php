@@ -3,7 +3,7 @@
 function calculate_str($dblink, $roll, $player) {
     $strength_result = mysqli_query($dblink, "SELECT str FROM players WHERE player_name = '".$player."'");
     $strength = mysqli_fetch_row($strength_result);
-    $result = ( $strength[0] - 10) / 2 + $roll;
+    $result = ( $strength[0]  - 10) / 2 + $roll;
     $result = round($result, 0, PHP_ROUND_HALF_DOWN);
     return $result;
 }
