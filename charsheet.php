@@ -28,11 +28,11 @@ if($_GET['action'] == 'edit') {
 			if (mysqli_query($dblink, "UPDATE players SET 
 			    player_name = '".$_POST['player_name']."', ecl = ".$_POST['ecl' ].", 
             		    str = ".$_POST['str'].", dex = ".$_POST['dex'].",
-			    con = ".$_POST['con'].", wis = ".$_POST['wis'].", 
+			            con = ".$_POST['con'].", wis = ".$_POST['wis'].", 
             		    intel = ".$_POST['intel'].", cha = ".$_POST['cha'].", `class-levels` = '".$_POST['class-levels']."', 
 			    hp = ".$_POST['hp']." ,  movement = ".$_POST['movement'].", init = ".$_POST['init'].",
 			    bab = ".$_POST['bab'].", fort = ".$_POST['fort'].", 
-			    race = ".$_POST['race'].", alignment = '".$_POST['alignment']."',
+			    race = '".$_POST['race']."' , alignment = '".$_POST['alignment']."',
             		    ref = ".$_POST['ref'].", will = ".$_POST['will']." 
 			    WHERE player_id = ".$player_id."")) {
 				header("location: charsheet.php?id=".$player_id."&action=view");
